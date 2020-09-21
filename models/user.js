@@ -13,7 +13,11 @@ const userSchema = new mongoose.Schema({
         required :true
     },
 
-    name :{
+    fname :{
+        type : String,
+        required :true
+    },
+    lname :{
         type : String,
         required :true
     }},
