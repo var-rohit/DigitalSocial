@@ -11,8 +11,11 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-stratergy');
 const MongoStore = require('connect-mongo')(session);
 
+
+
 //parse cookie data
 app.use(cookieParser());
+
 
 //to decode form data in key : value pair
 app.use(express.urlencoded({extended: true}));

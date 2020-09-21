@@ -1,21 +1,28 @@
-.navbar{
-    position: relative;
-}
+.navbar {
+  position: relative; }
+
+.logo {
+  position: absolute;
+  margin-top: -30px;
+  left: 20px; }
+
+img {
+  height: 100px;
+  width: 100px; }
+
 
 .navbar-nav{
+  margin-left: 1150px;
+
+}
+
+  @media (max-width: 500px) {
+  .navbar-nav{
     margin-left: 100px;
+
+    text-align: right !important;
+
+  }
 }
 
-.logo{
-    position: absolute;
-    margin-top: -30px;
-    left: 20px;
-   
-}
-
-img{
-    height: 100px;
-    width: 100px;
-}
-    
 
