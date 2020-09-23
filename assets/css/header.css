@@ -1,5 +1,7 @@
 .navbar {
-  position: relative; }
+  position: relative;
+
+}
 
 .logo {
   position: absolute;
@@ -15,6 +17,8 @@ img {
   margin-left: 1150px;
 
 }
+
+
 
   @media (max-width: 500px) {
   .navbar-nav{

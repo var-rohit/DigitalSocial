@@ -5,30 +5,65 @@
 <div class="signup-form  col-lg-4 col-md-6 col-xs-12">
     <form action="/posts/create" method="post">
         <div class="form-group">
-                <label for="comment">Create Post</label>
-                <textarea class="form-control" name = "content" rows="5" id="comment"></textarea>
+                <textarea class="form-control" name = "content" rows="5" id="comment" required="required"></textarea>
               </div>
 		<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Create Post</button>
         </div>
     </form>
+</div>
+
     <%}%>
 
     <div class= "posts-container">
+        <!--posts is defined in Home controller-->
         <%for(post of posts){%>
-            <div class="card signup-form " >
+            <div class="card signup-form" >
                 <div class="card-body">
                   <h5 class="card-title" style="color:black;"><%= post.user.fname %></h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                   <p class="card-text" style="color:black;"><%= post.content %></p>
                   <a href="#" class="card-link" style="color: darkgreen;">Card link</a>
                   <a href="#" class="card-link" style="color: darkgreen;">Another link</a>
                 </div>
+                   <div class = "comments-container">
+                    <% if(locals.user){ %>
+                        <div class="signup-form">
+                            <form action="/comments/create" method="post">
+                                <div class="form-group">
+                                        <textarea class="form-control" name = "content" rows="5" id="comment" placeholder="Please type in your comment here..." required="required"></textarea>
+                                        <input type="hidden" name="post" value="<%= post._id %>">  
+                                    </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Add comment</button>
+                                </div>
+                            </form>
+                        </div>   
+                        
+                            <%}%>   
+                            <div class = "post-comments_list">
+                                <ul id = "post-comment-<%= post._id %>" style="color:black;">
+                                    <% for(comment of post.comments){%>
+                                       
+                                        <li>
+                                        <p>
+                                                <%= comment.content %>
+                                            <br>
+                                                <small>
+                                                    <%= comment.user.fname %>
+                                                </small>
+                                            </p>
+                                        </li>    
+                                            <%}%>   
+                                </ul>
+                                
+                            </div>
+                            
               </div>
-        <%}%>
+
+
+       
     </div>
-
-    
-
+    <%}%>
  </div>
-</div>
+
+
