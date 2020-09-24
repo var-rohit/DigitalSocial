@@ -20,6 +20,12 @@
         <%for(post of posts){%>
             <div class="card signup-form" >
                 <div class="card-body">
+                    <% if(locals.user && locals.user.id  == post.user.id) {%> 
+                    <small>
+                        <a href="/posts/destroy/<%= post._id %>" style="color:black;">
+                        Delete</a>
+                    </small>
+                    <%}%>
                   <h5 class="card-title" style="color:black;"><%= post.user.fname %></h5>
                   <p class="card-text" style="color:black;"><%= post.content %></p>
                   <a href="#" class="card-link" style="color: darkgreen;">Card link</a>
@@ -41,7 +47,7 @@
                         
                             <%}%>   
                             <div class = "post-comments_list">
-                                <ul id = "post-comment-<%= post._id %>" style="color:black;">
+                                <ul id = "post-comment-<%= post._id %>" style="color:black">
                                     <% for(comment of post.comments){%>
                                        
                                         <li>
