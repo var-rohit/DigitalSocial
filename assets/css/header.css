@@ -1,32 +1,27 @@
-.navbar {
-  position: relative;
+.bg-dark{
+  background-color: #060606 !important;
 
 }
 
-.logo {
-  position: absolute;
-  margin-top: -30px;
-  left: 20px; }
-
-img {
-  height: 100px;
-  width: 100px; }
-
-
-.navbar-nav{
-  margin-left: 1150px;
-
+.dropdown-menu{
+  background-color: #060606;
 }
 
-
-
-  @media (max-width: 500px) {
-  .navbar-nav{
-    margin-left: 100px;
-
-    text-align: right !important;
-
-  }
+.dropdown-item{
+  color:white;
+  text-align: right;
 }
 
+.navbar{
+  z-index:2;width: 100%;position: relative;
+}
+
+.nav-link{
+  text-align: right;
+  color:white !important;
+}
+
+.nav-item{
+  color:white !important;
+}
 
