@@ -1,44 +1,49 @@
 <link rel="stylesheet" href="/css/header.css">
-<header>
-  <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light" style="background-color:#fb123c;">
-    <a class="navbar-brand" href="#"><div class = "logo"> <img src="/images/logo.png" alt="image-load-issue"></div>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ">
-        <li><a class="nav-link" href="/">Home</a></li>
-        <% if(locals.user ) {%>
-              <li><a class="nav-link" href="/users/profile" ><%= user.fname %></li></a>  
-              
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/sign-out">Sign out</a>
-        </li>       
+
+<div class="container-fluid">
+<div class="row" >
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark " >
+      <a class="navbar-brand" href="#"><img src="/images/logo.png" style="height: 70px;width: 70px;position: absolute;" alt="cannot-load-img"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto  float-right">
+          <% if(locals.user ) {%>
+    
+          <li class="nav-item dropdown">
+          
+            <a class="nav-link dropdown-toggle" style="color:white;" href="/users/profile" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= user.fname %> </a>
+
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+              <a class="dropdown-item" href="/">Home</a>
+              <a class="dropdown-item"  href="/users/sign-out">Sign Out</a>
+             </div>
+          </li>
           <% } else { %>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/sign-in">Sign in</a>
-        </li>
+          <li class="nav-item float-right" >
+              <a class="nav-link"  href="/users/sign-in">Sign In</a>
+            </li>
 
+            <li class="nav-item float-right">
+              <a class="nav-link"  href="/users/sign-up">Sign Up</a>
+            </li>
+            <%}%>
+            <li class="nav-item float-right">
+              <form class="form-inline my-2 my-lg-0 ">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search People" aria-label="Search">
+                  <button class="btn btn-outline-light my-2 my-sm-0 float-right"  type="submit">Search</button>
+                </form>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/sign-up">Sign up<span class="sr-only">(current)</span></a>
-        </li>
-          <%}%>
-       <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>-->
-      </ul>
-      
-    </div>
-  </nav>
-  </header>
+            </li>
+          
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-  <script src="../../assets/js/vendor/popper.min.js"></script>
-  <script src="../../dist/js/bootstrap.min.js"></script>
+          </ul>
+       </div>
+    </nav> </div>
+  </div>
+
