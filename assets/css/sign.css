@@ -15,9 +15,9 @@ body {
   border-radius: 3px; }
 
 .signup-form {
-  width: 400px;
+  width: auto;
   margin: 50 auto;
-  padding: 30px 0; }
+  padding: 55px ; }
 
 .signup-form h2 {
   color: #636363;

@@ -1,29 +1,23 @@
 <link rel="stylesheet" href="/css/sign.css">
 
-<div class="container">
-<div class="row " >
-
-    <div class=" col-xs-12 col-md-3 "></div>
-   <div class="signup-form  col-xs-12 col-md-6 ">
+<div class="row flex-fill"  >
+    <div class="d-none d-sm-block col-sm-3" 
+    style="height: 100%;text-align: center; color: black; background-color: mediumspringgreen;">
+        Left</div>
+        
+   <div class="col-xs-12 col-sm-6 signup-form  " style="text-align: center; height: 100%; width: 100%;background-color: yellow;">
     <% if(locals.user){ %>
     <form action="/posts/create" method="post">
         <div class="form-group">
                 <textarea class="form-control" name = "content" rows="5" id="comment" required="required"></textarea>
-              </div>
+        </div>
 		<div class="form-group">
             <button type="submit" class="btn btn-success btn-lg btn-block">Create Post</button>
         </div>
     </form>
     <%}%>
 
-</div>
-<div class=" col-xs-12 col-md-3 " ></div>
-   
-</div>
 
-    <div class="row">
-        <div class=" col-xs-12 col-md-3 "></div>
-        <div class= "  col-xs-12 col-md-6 " style="width: 100%;">
     
         <!--posts is defined in Home controller-->
         <%for(post of posts){%>
@@ -32,7 +26,11 @@
         
     <%}%>
  </div>
- <div class=" col-xs-12 col-md-3 "></div>
+ <div class="d-none d-sm-block col-sm-3"  style="height: 100%;text-align: center; color: black;  background-color: lawngreen;">
+    Right
+</div>
 
-</div>
-</div>
+
+ </div>
+ 
+ 
