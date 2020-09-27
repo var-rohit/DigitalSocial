@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div class="mt-5 ">
     <div class="card card-body">
     <h5  style="color:black;text-decoration: underline;" class="card-title">Created by <%= post.user.fname %></h5>
   <div style="color:black;" class="card-text"><%= post.content %></div>
@@ -18,9 +18,10 @@
    
 </div>
 </div>
-    <div class = "post-comments_list ">
+    <div class = "post-comments_list mt-5">
+        <% for(comment of post.comments){%>
+          
         <div class="card card-body" id = "post-comment-<%= post._id %>" style="color:black; border: none;">
-            <% for(comment of post.comments){%>
                
              
                         <span style="text-align: center;" ><%= comment.content %></span>
@@ -37,14 +38,15 @@
                    
                 </span>
                          
-                    <%}%>   
+                       
         
     </div>
+    <%}%>
     </div>
 
-   <div class = "comments-container ">
+   <div class = "comments-container row ">
     <% if(locals.user){ %>
-        <div class="signup-form ">
+        <div class="col-12 signup-form ">
             <form action="/comments/create" method="post">
                 <div class="form-group">
                         <textarea class="form-control" name = "content" rows="2" id="comment" placeholder="Please type in your comment here..." required="required"></textarea>
