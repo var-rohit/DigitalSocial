@@ -16,12 +16,16 @@ module.exports.create = async function(req,res){
             
                 //adding comment to post,updating post schema
                 post.comments.push(comment);
-                post.save();  
+                post.save();
+                
+                req.flash('success',"Comment published!");
 
                 res.redirect('/');
         }
         else
         {
+            req.flash('error',"Post not found!");
+
             res.redirect('back');
         }
     
@@ -40,17 +44,24 @@ module.exports.destroy =async function(req,res){
                 comment.remove();
     
                 await Post.findByIdAndUpdate(postId,{$pull : {comments :  req.params.id}});
+                req.flash('success',"Comment deleted!");
+
                 return res.redirect('back');
                 
             }
             else
                 {
+                    req.flash('error',"You cannot delete it!");
+
                     return res.redirect('back');
                          
                 }
      
     } catch (error) {
-        console.log('Error',error);
+        req.flash('error',error);
+        return res.redirect('back');
+                 
+
     }
     
        

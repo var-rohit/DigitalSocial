@@ -10,10 +10,13 @@ module.exports.create = async function(req,res){
         user : req.user._id
     });     
 
+          req.flash('success',"Post published!");
           return res.redirect('back');
     
     } catch (error) {
-       console.log('Error',error); 
+       
+        req.flash('error',error);
+        return res.redirect('back'); 
     }
    
    
@@ -33,6 +36,7 @@ module.exports.destroy = async function(req,res){
 
                 await Comment.deleteMany({post : req.params.id});
                 
+                req.flash('success',"Post deleted along with associated comments!");
                 return res.redirect('back');
                 
             } 
@@ -43,6 +47,10 @@ module.exports.destroy = async function(req,res){
             
     } catch (error) {
 
-        console.log('Error',error);
+        
+        req.flash('error',error);
+        return res.redirect('back');
+        
+
     }
 }

@@ -5,8 +5,10 @@
 <head>
         <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
+
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw==" crossorigin="anonymous" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
       <title>
         <%= title %>
     </title>
@@ -21,7 +23,6 @@
       <div class="container-fluid d-flex h-100 flex-column" >
 
          <%- include('_header'); %>
-         
             <!--pre defined-->
             <%- body %>
 
@@ -29,6 +30,32 @@
       </div>
 
         <%- script %>
+        <script>
+           <% if(flash.success && flash.success.length > 0) {%>
+            
+            new Noty({
+                     theme : 'bootstrap-v4',
+                     text: "<%= flash.success%>",
+                     type : 'success',
+                     layout : 'topRight',
+                     timeout : 1000
+                    
+                  }).show();
+         <%}%>
+
+         <% if(flash.error && flash.error.length > 0) {%>
+            
+            new Noty({
+                     theme : 'bootstrap-v4',
+                     text: "<%= flash.error%>",
+                     type : 'error',
+                     layout : 'topRight',
+                     timeout : 1000
+                    
+                  }).show();
+         <%}%>
+
+        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
