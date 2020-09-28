@@ -1,10 +1,43 @@
 <div class="row flex-fill" style=" height: 80%;" >
-    <div class="d-none d-sm-block col-sm-3" style="height: 100%;text-align: center;background-color: yellowgreen;">Left</div>
-      <div class="col-xs-12 col-sm-6" style="text-align: center; height: 100%;background-color: lightsalmon;"><h1>User</h1>
+    <!--<div class="d-none d-sm-block col-sm-3" style="height: 100%;text-align: center;background-color: yellowgreen;">Left</div>-->
+      <div class="col-xs-12 col-sm-12" style="text-align: center; height: 100%;background-color: lightsalmon;overflow-wrap: break-word;"><h1>User</h1>
 
-        <p><%= user.fname %></p>
-        <p><%= user.email %></p></div>
-    <div class="d-none d-sm-block col-sm-3" style="text-align: center; height: 100%;background-color: aqua;">Right</div>
+      
+       <!--I have already checked the login authentication in routes--> 
+      <%  if(user.id == profile_user.id) {%>
+        
+          <!--If logged in user matches , show the update form -->
+
+          <div class="signup-form  col-lg-6 col-md-12 col-xs-12">
+            <form action="/users/update/<%= profile_user.id%>" method="post">
+            <h2>Update</h2>
+            <p class="hint-text">You can change your basic credentials</p>
+                <div class="form-group form-row">
+                    <div class = "col"><input type="text" class="form-control" name="fname" value="<%= profile_user.fname%>" placeholder="First Name" required="required"></div>
+                    <div class = "col"><input type="text" class="form-control" name="lname" value="<%= profile_user.lname%>" required="required" placeholder="Last Name"></div>       
+                </div>
+           <div class="form-group">
+                  <input type="email" class="form-control" name="email" value=<%= profile_user.email%> placeholder="Email" required="required">
+                </div>
+            <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Update Now</button>
+                </div>
+            </form>
+         </div>
+          
+          
+        <%}else{ %>
+
+          <!--show only profile information-->
+
+          <p><%= profile_user.fname %></p>
+          <p><%= profile_user.email %></p>
+     
+        
+        <%}%>
+      </div>
+
+    <!--<div class="d-none d-sm-block col-sm-3" style="text-align: center; height: 100%;background-color: aqua;">Right</div>-->
 </div>
 
 

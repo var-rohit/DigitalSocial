@@ -2,10 +2,10 @@
 
 <div class="row flex-fill"  >
     <div class="d-none d-sm-block col-sm-3" 
-    style="height: 100%;text-align: center; color: black; background-color: mediumspringgreen;">
+    style="height: 100%;text-align: center; color: black; background-color: mediumspringgreen;overflow-wrap: break-word;">
         Left</div>
         
-   <div class="col-xs-12 col-sm-6 signup-form  " style="text-align: center; height: 100%; width: 100%;background-color: yellow;">
+   <div class="col-xs-12 col-sm-6 signup-form  " style="text-align: center; height: 100%; width: 100%;background-color: yellow;overflow-wrap: break-word;">
     <% if(locals.user){ %>
     <form action="/posts/create" method="post">
         <div class="form-group">
@@ -26,8 +26,13 @@
         
     <%}%>
  </div>
- <div class="d-none d-sm-block col-sm-3"  style="height: 100%;text-align: center; color: black;  background-color: lawngreen;">
-    Right
+ <div class="d-none d-sm-block col-sm-3"  style="height: 100%;text-align: center; color: black;  background-color: lawngreen;overflow-wrap: break-word;">
+   <%  for(user of all_users) {%>
+
+    <span style="color: black;display: block;">
+        <a href="/users/profile/<%= user.id%>"> <%= user.fname %> </a>
+    </span>
+    <%}%>
 </div>
 
 
