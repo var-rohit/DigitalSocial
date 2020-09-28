@@ -30,7 +30,7 @@
                 <span style="text-align: right; background-color: black;" class="border-bottom">
                     <small>
                    
-                    <% if(locals.user && ( locals.user.id  == comment.user.id || locals.user.id  == post.user.id  )  ){%> 
+                    <% if(locals.user && ( locals.user.id  == comment.user.id  )  ){%> 
                         <a href="/comments/destroy/<%= comment._id %>" >
                         Delete</a>
                     <%}%>
