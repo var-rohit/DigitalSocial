@@ -7,7 +7,7 @@
         
    <div class="col-xs-12 col-sm-6 signup-form  " style="text-align: center; height: 100%; width: 100%;background-color: yellow;overflow-wrap: break-word;">
     <% if(locals.user){ %>
-    <form action="/posts/create" method="post">
+    <form action="/posts/create" id="new-post-form" method="post">
         <div class="form-group">
                 <textarea class="form-control" name = "content" rows="5" id="comment" required="required"></textarea>
         </div>
@@ -20,11 +20,13 @@
 
     
         <!--posts is defined in Home controller-->
+        <span class= "post-list-container">
         <%for(post of posts){%>
           
             <%-include('_post_and_comment'); -%>
         
     <%}%>
+</span>
  </div>
  <div class="d-none d-sm-block col-sm-3"  style="height: 100%;text-align: center; color: black;  background-color: lawngreen;overflow-wrap: break-word;">
    <%  for(user of all_users) {%>
@@ -38,4 +40,4 @@
 
  </div>
  
- 
+ <script src="/js/home_posts.js"></script>

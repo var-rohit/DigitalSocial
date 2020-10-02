@@ -10,7 +10,7 @@ module.exports.home =async function(req,res){
     try {
 
           //populate user of each post (this user is taken via post schema) , this is preloading users
-   let posts = await Post.find({}).populate('user')
+   let posts = await Post.find({}).sort('-createdAt').populate('user')
    .populate({
        path : 'comments',
        populate : {

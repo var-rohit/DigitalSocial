@@ -1,14 +1,14 @@
-<div class="mt-5 ">
+<div class="mt-5 " id="post-<%= post._id%>">
     <div class="card card-body">
     <h5  style="color:black;text-decoration: underline;" class="card-title">Created by <%= post.user.fname %></h5>
   <div style="color:black;" class="card-text"><%= post.content %></div>
 
-<div  style="text-align: right;background-color: black;">
+<div  class= "delete-post-button" style="text-align: right;background-color: black;">
 
     <small>
 
     <% if(locals.user && locals.user.id  == post.user.id) {%> 
-        <a href="/posts/destroy/<%= post._id %>" >
+        <a  href="/posts/destroy/<%= post._id %>" >
         Delete Post</a>
       
 
