@@ -16,7 +16,7 @@ module.exports.create = async function(req,res){
     //to check that req is ajax request,so it should be xml http req(xhr)
     if(req.xhr)
     {
-         
+        
         return res.status(200).json({
             data: {
                 post : post,
