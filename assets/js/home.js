@@ -1,6 +1,7 @@
 {
     //method to submit the form data using ajax
     let createPost = function(){
+        console.log("In create post start");
         let newPostForm = $('#new-post-form');
         newPostForm.submit(function(e){
             //as we will manually submit using ajax
@@ -10,6 +11,7 @@
             $.ajax({
                 type : 'post', //as it is a post request
                 url : '/posts/create', //action of form
+                async : false,
                 //converts form data into json  
                 data : newPostForm.serialize(), 
                  success : function(data){ 
@@ -17,8 +19,8 @@
                     let newPost = newPostDOM(data.data.post,data.data.username);
                     $('.post-list-container').prepend(newPost);
                      successNoty("Post published!");
-                   
-   
+                     createComment();
+                     deletePost();   
                 
                    
                 },error : function(error){
@@ -26,11 +28,16 @@
                 }  
             });
         });
+
+        console.log("In create post end");
+     
     }
 
      //method to create post in DOM    
        let newPostDOM = function(post,user){
 
+        console.log("In new post dom ");
+ 
 
         return $(`<div class="mt-5 " id="post-${post._id}">
         <div class="card card-body">
@@ -79,6 +86,10 @@
    
    let deletePost = function(){
     
+
+    console.log("In delete post start");
+ 
+
         $('.delete-post-button').click(function(e){
             e.preventDefault();
             //console.log( " : "+ $(this).prop('href'));
@@ -103,12 +114,17 @@
         });
 
     
-
+        console.log("In delete post end");
+ 
      
     }
 
 
     let createComment = function(){
+
+
+        console.log("In create comment start");
+ 
 
         let newCommentForm = $('#new-comment-form');
         newCommentForm.submit(function(e){
@@ -124,7 +140,8 @@
                  success : function(data){ 
                     console.log(data);
                     let newComment = newCommentDOM(data.data.comment,data.data.username);
-                    $('.comment-list-container').prepend(newComment);
+                    console.log($(`#post-${data.data.comment.post}`).find('.comment-list-container'));
+                    $(`#post-${data.data.comment.post}`).find('.comment-list-container').prepend(newComment);
                     successNoty("Comment published!");
                      
 
@@ -137,7 +154,8 @@
             });
         });
   
-         
+        console.log("In create comment end");
+ 
        
     }
 
