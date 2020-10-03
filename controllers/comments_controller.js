@@ -1,5 +1,7 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const User = require('../models/user');
+
 
 
 module.exports.create = async function(req,res){
@@ -15,8 +17,24 @@ module.exports.create = async function(req,res){
             
             
                 //adding comment to post,updating post schema
-                post.comments.push(comment);
-                post.save();
+                 post.comments.push(comment);
+                 post.save();
+
+                let username = await User.find({_id : req.user._id},{fname : 1,_id:0});
+
+                //to check that req is ajax request,so it should be xml http req(xhr)
+                if(req.xhr)
+                {
+                    console.log(comment._id);
+                    
+                    return res.status(200).json({
+                        data: {
+                            comment : comment,
+                            username : username[0]
+                        },
+                        message : "Comment created !"
+                    });
+                }
                 
                 req.flash('success',"Comment published!");
 

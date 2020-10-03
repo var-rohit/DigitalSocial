@@ -18,10 +18,11 @@
    
 </div>
 </div>
-    <div class = "post-comments_list mt-5">
+    <div class = "comment-list-container mt-5">
+
         <% for(comment of post.comments){%>
           
-        <div class="card card-body" id = "post-comment-<%= post._id %>" style="color:black; border: none;">
+        <div class="card card-body" id = "comment-<%= comment._id %>" style="color:black; border: none;">
                
              
                         <span style="text-align: center;" ><%= comment.content %></span>
@@ -47,7 +48,7 @@
    <div class = "comments-container row ">
     <% if(locals.user){ %>
         <div class="col-12 signup-form ">
-            <form action="/comments/create" method="post">
+            <form action="/comments/create" id="new-comment-form" method="post">
                 <div class="form-group">
                         <textarea class="form-control" name = "content" rows="2" id="comment" placeholder="Please type in your comment here..." required="required"></textarea>
                         <input type="hidden" name="post" value="<%= post._id %>">  

@@ -16,10 +16,8 @@
                     //console.log(data);
                     let newPost = newPostDOM(data.data.post,data.data.username);
                     $('.post-list-container').prepend(newPost);
-                    successNoty("Post published!");
-                     deletePost(); 
-                     
-
+                     successNoty("Post published!");
+                   
    
                 
                    
@@ -51,17 +49,17 @@
        
     </div>
     </div>
-        <div class = "post-comments_list mt-5">
+        <div class = "comment-list-container mt-5">
         
         </div>
         
 
        <div class = "comments-container row ">
             <div class="col-12 signup-form ">
-                <form action="/comments/create" method="post">
+                <form action="/comments/create" id="new-comment-form" method="post">
                     <div class="form-group">
                             <textarea class="form-control" name = "content" rows="2" id="comment" placeholder="Please type in your comment here..." required="required"></textarea>
-                            <input type="hidden" name="post" value="<${post._id}">  
+                            <input type="hidden" name="post" value="${post._id}">  
                         </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg btn-block">Add comment</button>
@@ -83,17 +81,17 @@
     
         $('.delete-post-button').click(function(e){
             e.preventDefault();
-            console.log( " : "+ $(this).prop('href'));
+            //console.log( " : "+ $(this).prop('href'));
             
 
                 $.ajax({
                     type : 'get',
                     url : $(this).prop('href'),
                     success : function(data){
-                        console.log(data);
+                       // console.log(data);
                         $(`#post-${data.data.post_id}`).remove();
                         successNoty("Post deleted along with associated comments!");
-
+                         
                     },
                     error : function(error){
                         console.log(error.responseText);
@@ -109,6 +107,66 @@
      
     }
 
+
+    let createComment = function(){
+
+        let newCommentForm = $('#new-comment-form');
+        newCommentForm.submit(function(e){
+            //as we will manually submit using ajax
+            e.preventDefault();
+
+
+            $.ajax({
+                type : 'post', //as it is a post request
+                url : '/comments/create', //action of form
+                //converts form data into json  
+                data : newCommentForm.serialize(), 
+                 success : function(data){ 
+                    console.log(data);
+                    let newComment = newCommentDOM(data.data.comment,data.data.username);
+                    $('.comment-list-container').prepend(newComment);
+                    successNoty("Comment published!");
+                     
+
+   
+                
+                   
+                },error : function(error){
+                    console.log(error.responseText);
+                }  
+            });
+        });
+  
+         
+       
+    }
+
+
+    let newCommentDOM = function(comment,user){
+        return $(`<div class="card card-body" id = "comment-${comment._id}" style="color:black; border: none;">
+               
+             
+        <span style="text-align: center;" >${comment.content}</span>
+            <span>by-${user.fname}</span>
+
+<span style="text-align: right; background-color: black;" class="border-bottom">
+    <small>
+   
+        <a href="/comments/destroy/${comment._id}" >
+        Delete</a>
+    
+</small>
+   
+</span>
+         
+       
+
+</div>`);
+    }
+
+   
+
+
     let successNoty = function(data){
         new Noty({
             theme : 'bootstrap-v4',
@@ -121,8 +179,10 @@
 
     }
 
-    createPost();
+    createComment();
     deletePost(); 
+    createPost();
+   
     
 
    

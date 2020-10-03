@@ -13,10 +13,11 @@ module.exports.home =async function(req,res){
    let posts = await Post.find({}).sort('-createdAt').populate('user')
    .populate({
        path : 'comments',
+       options: { sort: { 'createdAt': -1 } },
        populate : {
            path : 'user'
        }
-   }) ; 
+   }).sort('-createdAt') ; 
 
    //this won't start until and unless above written await gets completed    
    let users = await User.find({});

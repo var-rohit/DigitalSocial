@@ -53,7 +53,7 @@ module.exports.destroy = async function(req,res){
                 await Comment.deleteMany({post : req.params.id});
               
                 if(req.xhr){
-                    console.log(req.params.id);
+                   // console.log(req.params.id);
 
                     return res.status(200).json({
                         data : {
