@@ -25,7 +25,6 @@ module.exports.create = async function(req,res){
                 //to check that req is ajax request,so it should be xml http req(xhr)
                 if(req.xhr)
                 {
-                    console.log(comment._id);
                     
                     return res.status(200).json({
                         data: {
@@ -62,6 +61,23 @@ module.exports.destroy =async function(req,res){
                 comment.remove();
     
                 await Post.findByIdAndUpdate(postId,{$pull : {comments :  req.params.id}});
+
+                if(req.xhr){
+                    // console.log(req.params.id);
+ 
+                     return res.status(200).json({
+                         data : {
+                             comment_id : req.params.id
+                             
+                         },
+                     
+                         message: "Comment deleted!"
+                     });
+                 }
+                 
+ 
+
+
                 req.flash('success',"Comment deleted!");
 
                 return res.redirect('back');

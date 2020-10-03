@@ -20,8 +20,8 @@
                     $('.post-list-container').prepend(newPost);
                      successNoty("Post published!");
                      createComment();
-                     deletePost();   
-                
+                     deletePost();
+                    
                    
                 },error : function(error){
                     console.log(error.responseText);
@@ -143,7 +143,7 @@
                     console.log($(`#post-${data.data.comment.post}`).find('.comment-list-container'));
                     $(`#post-${data.data.comment.post}`).find('.comment-list-container').prepend(newComment);
                     successNoty("Comment published!");
-                     
+                    deleteComment(); 
 
    
                 
@@ -170,7 +170,7 @@
 <span style="text-align: right; background-color: black;" class="border-bottom">
     <small>
    
-        <a href="/comments/destroy/${comment._id}" >
+        <a class= "delete-comment-button" href="/comments/destroy/${comment._id}" >
         Delete</a>
     
 </small>
@@ -181,6 +181,42 @@
 
 </div>`);
     }
+
+
+    let deleteComment = function(){
+    
+
+        console.log("In delete comment start");
+     
+    
+            $('.delete-comment-button').click(function(e){
+                e.preventDefault();
+                //console.log( " : "+ $(this).prop('href'));
+                
+    
+                    $.ajax({
+                        type : 'get',
+                        url : $(this).prop('href'),
+                        success : function(data){
+                            console.log(data);
+                            $(`#comment-${data.data.comment_id}`).remove();
+                            successNoty("Comment deleted!");
+                             
+                        },
+                        error : function(error){
+                            console.log(error.responseText);
+                        }
+                    });
+    
+                 
+        
+            });
+    
+        
+            console.log("In delete comment end");
+     
+         
+        }
 
    
 
@@ -197,6 +233,7 @@
 
     }
 
+    deleteComment();
     createComment();
     deletePost(); 
     createPost();
