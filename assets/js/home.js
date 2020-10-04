@@ -44,11 +44,11 @@
             <h5  style="color:black;text-decoration: underline;" class="card-title">Created by ${ user.fname}</h5>
             <div style="color:black;" class="card-text">${post.content}</div>
         
-    <div   style="text-align: right;background-color: black;">
+    <div   style="text-align: right;">
     
         <small>
     
-            <a class= "delete-post-button" href="/posts/destroy/${post._id}" >
+            <a class= "delete-post-button" style="color: #5cb85c" href="/posts/destroy/${post._id}" >
             Delete Post</a>
           
     
@@ -167,10 +167,10 @@
         <span style="text-align: center;" >${comment.content}</span>
             <span>by-${user.fname}</span>
 
-<span style="text-align: right; background-color: black;" class="border-bottom">
+<span style="text-align: right; " class="border-bottom">
     <small>
    
-        <a class= "delete-comment-button" href="/comments/destroy/${comment._id}" >
+        <a class= "delete-comment-button" style="color: #5cb85c" href="/comments/destroy/${comment._id}" >
         Delete</a>
     
 </small>

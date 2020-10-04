@@ -24,6 +24,8 @@ app.use(express.urlencoded({extended: true}));
 
 //to add css styles to pages
 app.use(express.static('./assets'));
+//make the uploads path available
+app.use('/uploads',express.static(__dirname + '/uploads'));
 
 //we need to add layout prior to routes , as views will be
 //rendered in routes
