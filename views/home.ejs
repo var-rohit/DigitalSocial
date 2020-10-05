@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="/css/sign.css">
 
 <div class="row flex-fill"  >
-    <div class="d-none d-sm-block col-sm-3" 
-    style="height: 100%;text-align: center; color: black; background-color: #e4e6eb;overflow-wrap: break-word;">
+    <div class="d-none d-sm-block col-sm-3 border-right" 
+    style="height: 100%;text-align: center; color: black; background-color: #f0f0f0;overflow-wrap: break-word;">
         Left</div>
         
-   <div class="col-xs-12 col-sm-6 signup-form  " style="text-align: center; height: 100%; width: 100%;background-color: #e4e6eb;overflow-wrap: break-word;">
+   <div class="col-xs-12 col-sm-6 signup-form  " style="text-align: center; height: 100%; width: 100%;background-color: #f0f0f0;overflow-wrap: break-word;">
     <% if(locals.user){ %>
     <form action="/posts/create" id="new-post-form" method="post">
         <div class="form-group">
@@ -28,13 +28,16 @@
     <%}%>
 </span>
  </div>
- <div class="d-none d-sm-block col-sm-3"  style="height: 100%;text-align: center; color: black;  background-color: #e4e6eb;overflow-wrap: break-word;">
-   <%  for(user of all_users) {%>
+ <div class="d-none d-sm-block col-sm-3 border-left"  style="height: 100%;padding-top:60px;text-align: center; color: black;  background-color: #f0f0f0;overflow-wrap: break-word;">
+   
+    <div class="active-users">
+        Active users
+    <%  for(user of all_users) {%>
 
-    <span style="color: black;display: block;">
-        <a href="/users/profile/<%= user.id%>"> <%= user.fname %> </a>
-    </span>
+        <a href="/users/profile/<%= user.id%>" style="color:#5cb85c;display: block;text-decoration: underline;"> <%= user.fname %> </a>
     <%}%>
+   </div>
+
 </div>
 
 
