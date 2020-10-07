@@ -9,6 +9,7 @@ const session = require('express-session');
 //used for authentication of user while signing in
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-stratergy');
+const passportJWT = require('./config/passport-jwt-stratergy');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
