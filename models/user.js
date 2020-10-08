@@ -22,8 +22,7 @@ const userSchema = new mongoose.Schema({
         required :true
     },
     lname :{
-        type : String,
-        required :true
+        type : String
     },
     avatar : {
         type : String
