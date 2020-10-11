@@ -1,6 +1,7 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const User = require('../models/user');
+const commentsMailer = require('../mailers/comments_mailer');
 
 
 
@@ -20,7 +21,12 @@ module.exports.create = async function(req,res){
                  post.comments.push(comment);
                  post.save();
 
+                 comment = await comment.populate('user','fname email').execPopulate();
+              
+
                 let username = await User.find({_id : req.user._id},{fname : 1,_id:0});
+                commentsMailer.newComment(comment);
+
 
                 //to check that req is ajax request,so it should be xml http req(xhr)
                 if(req.xhr)
