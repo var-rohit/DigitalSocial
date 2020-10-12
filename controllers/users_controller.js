@@ -98,6 +98,15 @@ module.exports.signIn = function(req,res){
     });
 }
 
+module.exports.resetPwdView = function(req,res){
+   
+   
+    
+    return res.render('reset_password.ejs',{
+        title : "Reset Password"
+    });
+}
+
 
 //sign-up
 module.exports.create =async function(req,res){
@@ -126,6 +135,28 @@ module.exports.create =async function(req,res){
     }  
 
 
+}
+
+module.exports.resetPwd = async function(req,res){
+    try {
+        
+        let user = await User.findOne({email : req.body.email});
+        console.log(req.body.email);
+
+        if(user)
+        {
+            req.flash('success',"Password reset link sent !");
+            return res.redirect('back');
+        }
+        else{
+            req.flash('error',"Email not found");
+            return res.redirect('back');
+        }
+
+
+    } catch (error) {
+        console.log('Error',error);
+    }
 }
 
 module.exports.createSession = function(req,res){

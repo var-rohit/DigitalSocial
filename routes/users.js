@@ -10,6 +10,10 @@ router.get('/sign-in',usersController.signIn);
 router.post('/create',usersController.create);
 router.post('/update/:id',usersController.update);
 router.get('/sign-out',usersController.destroySession);
+router.get('/reset-password/:token',usersController.resetPwdView);
+router.post('/password-reset',usersController.resetPwd);
+
+
 
 //use passport as a middleware to authenticate it
 router.post('/create-session',passport.authenticate(
