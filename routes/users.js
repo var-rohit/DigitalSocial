@@ -10,7 +10,8 @@ router.get('/sign-in',usersController.signIn);
 router.post('/create',usersController.create);
 router.post('/update/:id',usersController.update);
 router.get('/sign-out',usersController.destroySession);
-router.get('/reset-password/:token',usersController.resetPwdView);
+router.post('/reset-pwd-complete/:id',usersController.resetComplete);
+//submiting email id to get reset link route
 router.post('/password-reset',usersController.resetPwd);
 
 

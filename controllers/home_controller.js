@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const User = require('../models/user');
+const ResetPwd = require('../models/reset_pwd');
 
 
 
@@ -36,6 +37,25 @@ module.exports.home =async function(req,res){
     }
     
       
+}
+
+module.exports.resetPwd = async function(req,res){
+    
+    let resetLink = await ResetPwd.findOne({access_token : req.params.id,isValid : 'true'});
+
+    if(!resetLink){
+        req.flash('error',"Password reset link expired !");
+        return res.redirect('back');
+    }
+
+    //console.log("reset link ",resetLink);
+
+    return res.render('reset_password.ejs',{
+        title : "Reset Password",
+        resetpwd : resetLink
+
+    });
+
 }
 
 

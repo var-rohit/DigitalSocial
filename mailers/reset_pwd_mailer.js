@@ -2,14 +2,14 @@ const nodeMailer = require('../config/nodemailer');
 
 //another way to export
 
-exports.resetPassword = (comment) => {
-    //console.log("inside newComment mailer");
-    let htmlString  = nodeMailer.renderedTemplate({comment : comment},'/password_reset/reset_pwd_template.ejs');  
-
+exports.resetPwd = (resetpwd) => {
+    console.log("inside resetPassword mailer");
+    let htmlString  = nodeMailer.renderedTemplate({resetpwd : resetpwd},'/password_reset/reset_pwd_template.ejs');  
+    console.log(resetpwd.user.email);
     nodeMailer.transporter.sendMail({
         from : "developmentrohit07@gmail.com",
-        to : comment.user.email,
-        subject : "New comment published",
+        to : resetpwd.user.email,
+        subject : "Reset password",
         html : htmlString
     },(err,info)=>{
         if(err){

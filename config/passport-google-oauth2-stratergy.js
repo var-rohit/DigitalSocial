@@ -16,8 +16,8 @@ passport.use(new googleStratergy({
                     console.log("error in google stratergy-passport ",err);
                     return;
                 }
-                console.log(accessToken,refreshToken);
-                console.log(profile);
+               // console.log(accessToken,refreshToken);
+               // console.log(profile);
 
                 if(user){
                     //if found , set this user as req.user

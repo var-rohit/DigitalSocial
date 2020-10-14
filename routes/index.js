@@ -6,6 +6,8 @@ const homeController = require('../controllers/home_controller');
 console.log(`router loaded`);
 
 router.get('/',homeController.home);
+//route to reset password page
+router.get('/reset-password/:id',homeController.resetPwd);
 router.use('/users',require('./users'));
 router.use('/posts',require('./posts'));
 router.use('/comments',require('./comments'));

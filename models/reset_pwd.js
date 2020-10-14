@@ -21,5 +21,6 @@ const resetPwdSchema = new mongoose.Schema({
     timestamps : true
 });
 
-const ResetPwd = mongoose.model('Post',resetPwdSchema);
+//collection name
+const ResetPwd = mongoose.model('ResetPwd',resetPwdSchema);
 module.exports = ResetPwd;

@@ -1,6 +1,12 @@
 const User = require('../models/user');
 const fs = require('fs');
 const path = require('path');  
+const crypto = require('crypto');
+const ResetPwd = require('../models/reset_pwd');
+const passwordResetWorker = require('../workers/password_reset_worker');
+const queue = require('../config/kue');
+
+
 
 module.exports.profile = async function(req,res){
     
@@ -98,14 +104,7 @@ module.exports.signIn = function(req,res){
     });
 }
 
-module.exports.resetPwdView = function(req,res){
-   
-   
-    
-    return res.render('reset_password.ejs',{
-        title : "Reset Password"
-    });
-}
+
 
 
 //sign-up
@@ -114,6 +113,8 @@ module.exports.create =async function(req,res){
     try {
         
     if(req.body.password != req.body.confirm_password){
+        req.flash('error',"Passwords do not matched!");
+          
         return res.redirect('back');
     }
 
@@ -122,6 +123,8 @@ module.exports.create =async function(req,res){
    if(!user)
             {
                 await User.create(req.body);
+                req.flash('success',"Signed up successfully!");
+            
                     return res.redirect('/users/sign-in');        
             }
             else
@@ -145,7 +148,26 @@ module.exports.resetPwd = async function(req,res){
 
         if(user)
         {
+            let resetPwd =  await ResetPwd.create({
+                user : user._id,
+                access_token : crypto.randomBytes(20).toString('hex'),
+                isValid : true
+            });
+
+            resetPwd = await resetPwd.populate('user','fname email').execPopulate();
+
+            let job =  queue.create('resetpwd',resetPwd).save(function(err){
+                if(err){
+                    console.log("Error in sending job to queue");
+                    return;
+                }
+
+                console.log('job enqueued ',job.id);
+            })
+
             req.flash('success',"Password reset link sent !");
+             
+
             return res.redirect('back');
         }
         else{
@@ -157,6 +179,48 @@ module.exports.resetPwd = async function(req,res){
     } catch (error) {
         console.log('Error',error);
     }
+}
+
+module.exports.resetComplete = async function(req,res){
+        console.log(req.params.id);
+    try {
+
+      
+        
+        if(req.body.password != req.body.confirm_password){
+            req.flash('error',"Passwords do not matched!");
+            return res.redirect('back');
+        }
+
+        let resetpwd = await ResetPwd.findOne({access_token : req.params.id});
+        console.log(resetpwd);
+        if(resetpwd)
+            {
+                await User.findByIdAndUpdate(resetpwd.user,{password : req.body.password});
+                resetpwd.isValid = false;
+               
+               await resetpwd.save();
+                
+
+                req.flash('success',"Password changed successfully!");
+            
+                    return res.redirect('/users/sign-in');   
+
+            }
+            else{
+                req.flash('error',"Something went wrong!");
+                console.log("access token issue");
+                return res.redirect('back');
+            }
+
+
+    } catch (error) {
+        console.log("error");
+        return res.redirect('back');
+    }
+
+
+
 }
 
 module.exports.createSession = function(req,res){
