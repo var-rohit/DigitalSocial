@@ -11,6 +11,8 @@ const queue = require('../config/kue');
 module.exports.create = async function(req,res){
    let post = await Post.findById(req.body.post);
 
+    console.log("post ",req.body.post);
+
         if(post)
         {
           let comment =  await Comment.create({

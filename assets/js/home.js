@@ -11,16 +11,15 @@
             $.ajax({
                 type : 'post', //as it is a post request
                 url : '/posts/create', //action of form
-                async : false,
                 //converts form data into json  
                 data : newPostForm.serialize(), 
                  success : function(data){ 
                     //console.log(data);
                     let newPost = newPostDOM(data.data.post,data.data.username);
                     $('.post-list-container').prepend(newPost);
+                    createComment();
+                    deletePost();
                      successNoty("Post published!");
-                     createComment();
-                     deletePost();
                     
                    
                 },error : function(error){
@@ -44,11 +43,11 @@
             <h5  style="color:black;text-decoration: underline;" class="card-title">Created by ${ user.fname}</h5>
             <div style="color:black;" class="card-text">${post.content}</div>
         
-    <div   style="text-align: right;background-color: black;">
+    <div   style="text-align: right;">
     
         <small>
     
-            <a class= "delete-post-button" href="/posts/destroy/${post._id}" >
+            <a class= "delete-post-button" style="color: #5cb85c" href="/posts/destroy/${post._id}" >
             Delete Post</a>
           
     
@@ -126,6 +125,7 @@
  
 
         let newCommentForm = $('#new-comment-form');
+       // console.log( $('#new-comment-form').find('.form-group').find('input').val());
         newCommentForm.submit(function(e){
             //as we will manually submit using ajax
             e.preventDefault();
@@ -137,13 +137,13 @@
                 //converts form data into json  
                 data : newCommentForm.serialize(), 
                  success : function(data){ 
-                    console.log(data);
+                    //console.log(data);
                     let newComment = newCommentDOM(data.data.comment,data.data.username);
-                    console.log($(`#post-${data.data.comment.post}`).find('.comment-list-container'));
+                    //console.log($(`#post-${data.data.comment.post}`).find('.comment-list-container'));
                     $(`#post-${data.data.comment.post}`).find('.comment-list-container').prepend(newComment);
+                    deleteComment();
                     successNoty("Comment published!");
-                    deleteComment(); 
-
+                    
    
                 
                    
@@ -165,10 +165,10 @@
              
         <span style="text-align: center;" >${comment.content}</span>
             <span>by-${user.fname}</span>
-<span style="text-align: right; background-color: black;" class="border-bottom">
+<span style="text-align: right;" class="border-bottom">
     <small>
    
-        <a class= "delete-comment-button" href="/comments/destroy/${comment._id}" >
+        <a class= "delete-comment-button" style="color: #5cb85c" href="/comments/destroy/${comment._id}" >
         Delete</a>
     
 </small>
@@ -197,6 +197,7 @@
                         success : function(data){
                             console.log(data);
                             $(`#comment-${data.data.comment_id}`).remove();
+                           
                             successNoty("Comment deleted!");
                              
                         },
@@ -230,12 +231,20 @@
 
     }
 
-    deleteComment();
-    createComment();
-    deletePost(); 
-    createPost();
-   
-    
 
+    let convertPostsToAjax = function(){
+        console.log($('.post-list-container>div'));
+        $('.post-list-container>div').each(function(){
+            
+            deletePost();
+            createComment();
+            deleteComment(); 
+        })
+    }
+
+  
+    createPost();
+    convertPostsToAjax();
+ 
    
 }
