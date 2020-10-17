@@ -29,7 +29,6 @@ module.exports.create = async function(req,res){
                  comment = await comment.populate('user','fname email').execPopulate();
               
 
-                let username = await User.find({_id : req.user._id},{fname : 1,_id:0});
                 
                 //this line should go in queue
 //                commentsMailer.newComment(comment);
@@ -48,8 +47,8 @@ module.exports.create = async function(req,res){
                     
                     return res.status(200).json({
                         data: {
-                            comment : comment,
-                            username : username[0]
+                            comment : comment
+                            
                         },
                         message : "Comment created !"
                     });

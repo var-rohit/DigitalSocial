@@ -11,7 +11,7 @@ module.exports.create = async function(req,res){
         user : req.user._id
     }); 
     
-    let username = await User.find({_id : req.user._id},{fname : 1,_id:0});
+   post = await post.populate('user','fname').execPopulate();
 
     //to check that req is ajax request,so it should be xml http req(xhr)
     if(req.xhr)
@@ -19,8 +19,7 @@ module.exports.create = async function(req,res){
         
         return res.status(200).json({
             data: {
-                post : post,
-                username : username[0]
+                post : post
             },
             message : "Post created !"
         });
