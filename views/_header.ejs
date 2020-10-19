@@ -13,7 +13,7 @@
         <ul class="navbar-nav ml-auto  float-right">
           <% if(locals.user ) {%>
     
-          <li class="nav-item dropdown">
+          <li class="nav-item dropleft">
           
             <a class="nav-link dropdown-toggle" style="color:white;" href="/users/profile" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= user.fname %> </a>
@@ -35,13 +35,7 @@
               <a class="nav-link"  href="/users/sign-up">Sign Up</a>
             </li>
             <%}%>
-            <li class="nav-item float-right">
-              <form class="form-inline my-2 my-lg-0 ">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search People" aria-label="Search">
-                  <button class="btn btn-outline-light my-2 my-sm-0 float-right"  type="submit">Search</button>
-                </form>
-
-            </li>
+            
           
 
           </ul>
