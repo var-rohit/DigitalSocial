@@ -19,6 +19,8 @@
 
                      new PostComments(data.data.post._id);
 
+                     new ToggleLike($(' .toggle-like-button',newPost));
+
                      new Noty({
                         theme: 'bootstrap-v4',
                         text: "Post published!",
@@ -52,13 +54,26 @@
                 ${ post.content }
                 </div>
             
-            <div  style="text-align: right; ">
+            <div >
                 <small>
-                
-                    <a class= "delete-post-button" style="color: #5cb85c"  href="/posts/destroy/${post._id }" >
-                        Delete Post
-                    </a>
                
+
+                <span style="margin-right: 70%;color: black;" >
+               
+             <a class="toggle-like-button" data-likes="${ post.likes.length }" style="color: black;text-decoration: none;" href="/likes/toggleLike/?id=${post._id }&type=Post">
+                <img src="/images/Like-Button.png" style="height: 20px;width: 20px;" alt="">
+                &nbsp;0
+             </a>  
+            
+            </span>
+
+
+
+            <span style="margin-left: 70%px;"> 
+                    <a class= "delete-post-button" style="color: #5cb85c"  href="/posts/destroy/${post._id }" >
+                        <img src="/images/Delete-Button.png" style="height: 15px;width: 15px;" alt="">
+                    </a>
+                </span>
                 </small>
             
             </div>

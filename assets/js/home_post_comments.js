@@ -34,6 +34,8 @@ class PostComments{
 
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
 
+                    new ToggleLike($(' .toggle-like-button',newComment));
+
                     new Noty({
                         theme: 'bootstrap-v4',
                         text: "Comment published!",
@@ -61,15 +63,23 @@ class PostComments{
             by-${ comment.user.fname }
         </span>
             
-        <span style="text-align: right;" class="border-bottom">
+        <div class="border-bottom">
             <small>
-                 
+            <span style="margin-right: 70%;color:black;">
+                <a class="toggle-like-button" data-likes="${ comment.likes.length }" style="color: black;text-decoration: none;" href="/likes/toggleLike/?id=${ comment._id }&type=Comment">
+                     <img src="/images/Like-Button.png" style="height: 20px;width: 20px;" alt="">
+                    &nbsp;0
+                </a>  
+            </span>
+            <span style="margin-left: 70%px;">
                     <a class= "delete-comment-button" style="color: #5cb85c"  href="/comments/destroy/${ comment._id }" >
-                        Delete
+                    <img src="/images/Delete-Button.png" style="height: 15px;width: 15px;" alt="">
+              
                     </a>
+            </span>
                
             </small>
-        </span>
+        </div>
                     
     </div>`)
     }

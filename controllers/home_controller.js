@@ -16,9 +16,10 @@ module.exports.home =async function(req,res){
        path : 'comments',
        options: { sort: { 'createdAt': -1 } },
        populate : {
-           path : 'user'
+           path : 'user likes'
+           
        }
-   }).sort('-createdAt') ; 
+   }).populate('likes'); 
 
    //this won't start until and unless above written await gets completed    
    let users = await User.find({});
