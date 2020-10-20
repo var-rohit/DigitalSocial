@@ -1,14 +1,42 @@
 <% if (locals.user){ %>
 	<div id="user-chat-box">
-		<ul id="chat-messages-list">
+		<ul id="chat-messages-list" class="list-group">
 			
 
 		</ul>
-		<div id="chat-message-input-container">
-			<input id="chat-message-input" placeholder="Type message here...">
-			<button id="send-message">Send</button>
+		<div id="chat-message-input-container" class="form-inline" >
+			
+				<input type="text" class="form-control" id="chat-message-input"  placeholder="Type...">
+			  
+				<button id="send-message" class="btn btn-primary mt-1" style="opacity: 0.8;">Send</button>
+			  
 		</div>
 
 	</div>
-	<button class="open-button" onclick="toggleChatWindow()">Chat</button>  
+	<button type="button" class="btn btn-success " id="open-button" onclick="toggleChatWindow()">Chat</button>  
 <% } %>
+
+<script>
+    function toggleChatWindow() {
+		var x = $('#user-chat-box').css('display');
+		console.log(x);
+
+		if(x === 'block')
+		{
+			console.log("yo ");
+			$('#user-chat-box').fadeOut('slow'); 
+			document.getElementById("open-button").innerHTML = "Chat";
+		}
+
+        if (x === 'none') {
+
+			$('#user-chat-box').fadeIn('slow'); 
+			document.getElementById("open-button").innerHTML = "Close";
+			document.getElementById("open-button").style.display = 'block';
+
+			var y = $('#user-chat-box').css('display');
+		console.log(y);
+            
+        } 
+    }
+</script>

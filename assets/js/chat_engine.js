@@ -56,13 +56,21 @@ class ChatEngine{
                 messageType = 'self-message';
             }
 
-            newMessage.append($('<span>',{
+           /* newMessage.append($('<span>',{
                 'html' : data.message
             }));
 
             newMessage.append($('<li>',{
                 'html' : data.user_email
-            }));
+            }));*/
+
+            newMessage.append($ (`<div class="card border-0" style="background-color :  #f0f0f0;"            ">
+  <div class="card-body" style="border-style:none;>
+    
+    <p class="card-text">${data.message}</p>
+    <h6 class="card-subtitle  text-muted" style="font-size:10px">${data.user_email}</h6>
+     </div>
+</div>`));
 
             newMessage.addClass(messageType);
 
