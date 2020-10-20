@@ -68,6 +68,10 @@ class ChatEngine{
 
             $('#chat-messages-list').append(newMessage);
 
+            if($('#user-chat-box').css('display') == 'none'){
+                $('#user-chat-box').fadeIn('slow');
+            }
+
 
         })
 

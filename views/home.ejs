@@ -58,7 +58,7 @@
    function toggleChatWindow() {
   var x = document.getElementById("user-chat-box");
   if (x.style.display === "none") {
-    x.style.display = "block";
+    $('#user-chat-box').fadeIn('slow');
   } else {
     x.style.display = "none";
   }

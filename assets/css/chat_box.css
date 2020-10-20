@@ -17,13 +17,16 @@
       overflow: auto; }
       #user-chat-box #chat-messages-list .other-message {
         text-align: left;
+        
         padding: 5px; }
         #user-chat-box #chat-messages-list .other-message span {
           display: inline-block;
           padding: 15px;
+          border-radius: 10%;
           background-color: #ffa0a0; }
       #user-chat-box #chat-messages-list .self-message {
         text-align: right;
+        border-radius: 2%;
         padding: 5px; }
         #user-chat-box #chat-messages-list .self-message span {
           display: inline-block;
