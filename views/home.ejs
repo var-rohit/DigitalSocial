@@ -3,11 +3,13 @@
 
 <div class="row flex-fill">
     <div class="d-none d-sm-block col-sm-3 border-right"
-        style="height: 100%;text-align: center; color: black; background-color: #f0f0f0;overflow-wrap: break-word;">
-        Left</div>
+        style="height: 100%;padding-top:60px;text-align: center; color: black;  background-color: #f0f0f0;overflow-wrap: break-word;">
+        </div>
 
     <div class="col-xs-12 col-sm-6 signup-form  "
         style="text-align: center; height: 100%; width: 100%;background-color: #f0f0f0;overflow-wrap: break-word;">
+        &nbsp;
+       
         <% if(locals.user){ %>
         <form action="/posts/create" id="new-post-form" method="post">
             <div class="form-group">
@@ -17,7 +19,10 @@
                 <button type="submit" class="btn btn-success btn-lg btn-block">Create Post</button>
             </div>
         </form>
-        <%}%>
+        
+        <%}else{%>
+            <p class="hint-text">Please <a href="/users/sign-in" class="hint-text">sign in</a> to create post and add comments and likes to them.</p>
+            <%}%>
 
 
     
