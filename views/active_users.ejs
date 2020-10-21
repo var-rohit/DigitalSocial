@@ -1,0 +1,23 @@
+<div class="row flex-fill" style=" height: 80%;" >
+    <div class="row flex-fill">
+      <div class="d-none d-sm-block col-sm-3 border-right"
+          style="height: 100%;text-align: center; color: black; background-color: #f0f0f0;overflow-wrap: break-word;">
+          </div> 
+          <div class="col-xs-12 col-sm-6 signup-form px-5" style="text-align: center; height: 100%;background-color: #f0f0f0;overflow-wrap: break-word;">
+           
+               <p class="mt-5">Active users</p> 
+            <%  for(acnt of total_users) {%>
+        
+                <a href="/users/profile/<%= acnt.id%>" style="color:#5cb85c;display: block;text-decoration: underline;">
+                    <%= acnt.fname %> </a>
+                <%}%>
+          
+        </div>
+  
+      <div class="d-none d-sm-block col-sm-3 border-left" 
+      style="height: 100%;text-align: center; color: black; background-color: #f0f0f0;overflow-wrap: break-word;"></div>
+  </div>
+  
+  
+  
+  

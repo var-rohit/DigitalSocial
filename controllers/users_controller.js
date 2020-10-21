@@ -27,6 +27,21 @@ module.exports.profile = async function(req,res){
     
 }
 
+module.exports.totalUsers = async function(req,res){
+    try {
+        
+        let usersList = await User.find({});
+
+
+        return res.render('active_users',{
+            title : "Active Users",
+            total_users : usersList
+        });
+    } catch (error) {
+        console.log('Error',error);
+    }
+}
+
 module.exports.update = async function(req,res){
    
     try {

@@ -78,6 +78,7 @@ class ChatEngine{
 
             if($('#user-chat-box').css('display') == 'none'){
                 $('#user-chat-box').fadeIn('slow');
+                document.getElementById("open-button").innerHTML = "Close";
             }
 
 
