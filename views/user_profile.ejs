@@ -1,16 +1,19 @@
 <div class="row flex-fill" style=" height: 80%;" >
-    <!--<div class="d-none d-sm-block col-sm-3" style="height: 100%;text-align: center;background-color: yellowgreen;">Left</div>-->
-      <div class="col-xs-12 col-sm-12" style="text-align: center; height: 100%;background-color: lightsalmon;overflow-wrap: break-word;"><h1>User</h1>
-        <img src="<%=profile_user.avatar %>" alt="<%=profile_user.fname %>" style="width: 200px;height: 200px;" class="img-thumbnail">
+  <div class="row flex-fill">
+    <div class="d-none d-sm-block col-sm-3 border-right"
+        style="height: 100%;text-align: center; color: black; background-color: #f0f0f0;overflow-wrap: break-word;">
+        </div> 
+        <div class="col-xs-12 col-sm-6 signup-form px-5" style="text-align: center; height: 100%;background-color: #f0f0f0;overflow-wrap: break-word;"><h1><%= profile_user.fname%></h1>
+        <img src="<%=profile_user.avatar %>" alt="<%=profile_user.fname %>-no-img-uploaded" style="width: 200px;height: 200px;" class="img-thumbnail">
       
        <!--I have already checked the login authentication in routes--> 
       <%  if(user.id == profile_user.id) {%>
         
           <!--If logged in user matches , show the update form -->
 
-          <div class="signup-form  col-lg-6 col-md-12 col-xs-12">
+         
             <form action="/users/update/<%= profile_user.id%>" enctype="multipart/form-data" method="post">
-            <h2>Update</h2>
+              &nbsp;
             <p class="hint-text">You can change your basic credentials</p>
                 <div class="form-group form-row">
                     <div class = "col"><input type="text" class="form-control" name="fname" value="<%= profile_user.fname%>" placeholder="First Name" required="required"></div>
@@ -28,7 +31,7 @@
                     <button type="submit" class="btn btn-success btn-lg btn-block">Update Now</button>
                 </div>
             </form>
-         </div>
+         
           
           
         <%}else{ %>
@@ -42,7 +45,8 @@
         <%}%>
       </div>
 
-    <!--<div class="d-none d-sm-block col-sm-3" style="text-align: center; height: 100%;background-color: aqua;">Right</div>-->
+    <div class="d-none d-sm-block col-sm-3 border-left" 
+    style="height: 100%;text-align: center; color: black; background-color: #f0f0f0;overflow-wrap: break-word;"></div>
 </div>
 
 
