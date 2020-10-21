@@ -1,4 +1,6 @@
 const express = require('express');
+const env = require('./config/environment');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8000;
@@ -30,9 +32,12 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 
 //to add css styles to pages
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 //make the uploads path available
 app.use('/uploads',express.static(__dirname + '/uploads'));
+
+app.use(logger(env.morgan.mode,env.morgan.options));
+
 
 //we need to add layout prior to routes , as views will be
 //rendered in routes
@@ -54,7 +59,7 @@ app.set('views','./views');
 app.use(session({
     name : 'digitalsocial',
     //TODO : change the secret before production deployment
-    secret : 'something',
+    secret : env.session_cookie_key,
     //when user has not logged in , so extra data is not required to be stored in session cookie
     saveUninitialized : false,
     //when session data is already stored, we do not want to re-write it

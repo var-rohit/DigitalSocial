@@ -7,10 +7,11 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 //As we will require it to compare credentials from database
 const User = require('../models/user');
+const env = require('./environment');
 
 let opts = {
     jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken(),  
-    secretOrKey : 'Digitalsocial'
+    secretOrKey : env.google_client_secret
 }
 
 passport.use(new JWTStratergy(opts,function(jwtPayload,done){

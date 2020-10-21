@@ -1,8 +1,9 @@
 //mongoose package acts as a middle layer between your express server and database
 const mongoose = require('mongoose');
+const env = require('./environment');
 
 //connect to db
-mongoose.connect('mongodb://localhost/digitalsocial_development');
+mongoose.connect(`mongodb://localhost/${env.db}`);
 
 //acquire the connection
 const db = mongoose.connection;
