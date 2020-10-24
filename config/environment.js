@@ -27,9 +27,9 @@ const development = {
         } 
     },
     
-    google_client_id : "595573587800-p7cqbjn0phglg7tsgj5gqs7pe2eod4df.apps.googleusercontent.com",
-    google_client_secret : "1-Jsddz_jp5kYbmP_73SzIvB",
-    google_call_back_url : "http://localhost:8000/users/auth/google/callback",
+    google_client_id : process.env.DIGITALSOCIAL_GOOGLE_CLIENT_ID,
+    google_client_secret : process.env.DIGITALSOCIAL_GOOGLE_CLIENT_SECRET,
+    google_call_back_url : process.env.DIGITALSOCIAL_GOOGLE_CALLBACK_URL,
     jwt_secret : 'Digitalsocial',
     morgan : {
         mode : 'dev',

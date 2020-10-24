@@ -48,7 +48,7 @@
         return $(`<div class="mt-5 " id="post-${post._id}">
         <div class="card card-body">
                 <h5  style="color:black;text-decoration: underline;" class="card-title">
-                    Created by ${ post.user.fname }
+                          Post created by ${ post.user.fname }
                 </h5>
                 <div style="color:black;" class="card-text">
                 ${ post.content }

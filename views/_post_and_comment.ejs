@@ -1,7 +1,7 @@
 <div class="mt-5 " id="post-<%= post._id%>">
     <div class="card card-body">
             <h5  style="color:black;text-decoration: underline;" class="card-title">
-                Created by <%= post.user.fname %>
+              Post created by <%= post.user.fname %>
             </h5>
             <div style="color:black;" class="card-text">
                      <%= post.content %>
@@ -43,15 +43,15 @@
 
         <% for(comment of post.comments){%>
             
-            <div class="card card-body" id = "comment-<%= comment._id %>" style="color:black; border: none;">
+            <div class="card card-body" id = "comment-<%= comment._id %>" style="color:black; border: none;background-color: #E6E6E6;">
                 
                 
                 <span style="text-align: center;" >
                     <%= comment.content %>
                 </span>
-                <span>
-                    by-<%= comment.user.fname %>
-                </span>
+                <small>
+                    commented by-<%= comment.user.fname %>
+                </small>
                     
                 <div class="border-bottom">
                     <small>

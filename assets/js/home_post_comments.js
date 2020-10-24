@@ -30,7 +30,7 @@ class PostComments{
                 success : function(data){
                     //console.log("create comment ",data);
                     let newComment = pSelf.newCommentDom(data.data.comment);
-                    $(`#post-comments-${postId}`).prepend(newComment);
+                    $(`#post-comments-${postId}`).append(newComment);
 
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
 
@@ -53,15 +53,15 @@ class PostComments{
     }
 
     newCommentDom(comment){
-        return $(` <div class="card card-body" id = "comment-${ comment._id }" style="color:black; border: none;">
+        return $(` <div class="card card-body" id = "comment-${ comment._id }" style="color:black; border: none;background-color: #E6E6E6;">
                 
                 
         <span style="text-align: center;" >
         ${ comment.content }
         </span>
-        <span>
-            by-${ comment.user.fname }
-        </span>
+        <small>
+            commented by-${ comment.user.fname }
+        </small>
             
         <div class="border-bottom">
             <small>

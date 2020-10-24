@@ -10,7 +10,8 @@
       <%  if(user.id == profile_user.id) {%>
         
           <!--If logged in user matches , show the update form -->
-
+		  <br>
+              <small>Maximum file size : <span style=color:red;>4MB</span></small>
          
             <form action="/users/update/<%= profile_user.id%>" enctype="multipart/form-data" method="post">
               &nbsp;

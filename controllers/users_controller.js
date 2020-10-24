@@ -59,9 +59,23 @@ module.exports.update = async function(req,res){
                 user.fname = req.body.fname;
                 user.lname = req.body.lname;
                 user.email = req.body.email;
-                
+		
+		 
+              
+    
                 //this is saving the path of the uploaded file into the avatar field of the User schema
                 if(req.file){
+
+		  if(req.file.size > 4100000)
+                       {
+                           console.log("exceed");
+                           req.flash('error',"Image size greater than 4MB ");
+                           return res.redirect('back');
+
+                       }
+
+
+
 
                     if(user.avatar){
                         fs.unlink(path.join(__dirname,'..',user.avatar),function(err){

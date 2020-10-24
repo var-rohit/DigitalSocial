@@ -16,9 +16,18 @@ const passportGoogle = require('./config/passport-google-oauth2-stratergy');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
-
+const fs = require('fs');
 //setup the chat server to use with socket.io
-const chatServer = require('http').Server(app);
+const https = require('https');
+const chatServer = https.createServer({
+    key: fs.readFileSync('/etc/ssl/private.key'),
+    cert: fs.readFileSync('/etc/ssl/certificate.crt'),
+    ca: fs.readFileSync('/etc/ssl/ca_bundle.pem'),
+    requestCert: false,
+    rejectUnauthorized: false
+},app);
+
+//const chatServer = require('https').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
